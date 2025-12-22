@@ -3,6 +3,5 @@
 
   <include name="aosp.xml" />
   <include name="aosp-device-xenvm-trout.xml" />
-  <include name="proprietary.xml" />
 
 </manifest>
