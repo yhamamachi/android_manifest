@@ -1,7 +1,7 @@
 <manifest>
     <remote name="github" fetch="https://github.com/"/>
     <remote name="fd" fetch="https://gitlab.freedesktop.org/"/>
-    <project path="device/epam/aosp-xenvm-trout" name="yhamamachi/android_device_epam_xenvm-trout" remote="github" revision="9bb5deabafd6561cbf5f2d8a271a4e5c72112ad1"/>
+    <project path="device/epam/aosp-xenvm-trout" name="yhamamachi/android_device_epam_xenvm-trout" remote="github" revision="7be89ca90be5d1a40e05734b2668581c484a1a3e"/>
     <project path="external/mesa3d_upstream" name="mesa/mesa" remote="fd" revision="e3f91fb13c70bff9bc361b78439293d6288084a1"/>
     <project path="vendor/epam/lisot" name="xen-troops/lisot" remote="github" revision="ea3da7cd2fd18059701ea67293d96f797f9ac39b"/>
 </manifest>
