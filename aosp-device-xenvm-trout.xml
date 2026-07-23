@@ -1,6 +1,6 @@
 <manifest>
     <remote name="github" fetch="https://github.com/"/>
     <remote name="fd" fetch="https://gitlab.freedesktop.org/"/>
-    <project path="device/epam/aosp-xenvm-trout" name="yhamamachi/android_device_epam_xenvm-trout" remote="github" revision="9fc23309d8990c3a6994ef7bd8ce17cf2f3a585f"/>
+    <project path="device/epam/aosp-xenvm-trout" name="yhamamachi/android_device_epam_xenvm-trout" remote="github" revision="b5c8ec62e5a8211a3a1dd2de2034da611845c9f6"/>
     <project path="vendor/epam/mesa3d_upstream" name="mesa/mesa" remote="fd" revision="e3f91fb13c70bff9bc361b78439293d6288084a1"/>
 </manifest>
