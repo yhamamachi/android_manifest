@@ -2,5 +2,28 @@
     <remote name="github" fetch="https://github.com/"/>
     <remote name="fd" fetch="https://gitlab.freedesktop.org/"/>
     <project path="device/epam/aosp-xenvm-trout" name="yhamamachi/android_device_epam_xenvm-trout" remote="github" revision="49304876cc1180286d1d8d8786761af232ab601c"/>
-    <project path="vendor/epam/mesa3d_upstream" name="mesa/mesa" remote="fd" revision="e3f91fb13c70bff9bc361b78439293d6288084a1"/>
+    <!--
+      Mesa 25.3.6, not the 24.3.0-devel revision the branch this was derived from pins.
+      Android 17 compiles the guest with -std=gnu++23 and clang-r584948b's libc++, which
+      declares std::unreachable() in <__utility/unreachable.h>. Mesa's src/util/macros.h
+      defined a lowercase `unreachable` macro until 25.3.0, so the declaration expanded
+      through the macro and every C++ translation unit that reaches <vector> failed with
+      "error: expected unqualified-id". Mesa renamed the macro to UNREACHABLE in 25.3.0;
+      25.3.6 is the current stable patch of that series. The revision below is the COMMIT the
+      annotated tag mesa-25.3.6 points at, not the tag object, so it matches what
+      `repo manifest -r` reports back.
+
+      Verified drop-in from the device tree's point of view: android/Android.mk still gates
+      on BOARD_MESA3D_USES_MESON_BUILD at the same line and still reads
+      BOARD_MESA3D_GALLIUM_DRIVERS, which is the whole interface
+      device/epam/aosp-xenvm-trout/xenvm_trout_arm64/BoardConfig.mk uses.
+
+      One build-host requirement changes with it: mesa's meson floor moves 1.1.0 -> 1.4.0,
+      and the Android build runs the HOST meson (android/mesa3d_cross.mk invokes it with
+      PATH=/usr/bin:/usr/local/bin), so a host with meson older than 1.4.0 now fails at
+      `meson setup`. Nothing else moves: the libdrm floor stays at 2.4.109 (AOSP 17 ships
+      2.4.124), and Rust/bindgen remain unnecessary for this configuration, which builds
+      only the virgl Gallium driver.
+    -->
+    <project path="vendor/epam/mesa3d_upstream" name="mesa/mesa" remote="fd" revision="06f9e28304d5d3f109c33535c1c25b9df5769af2"/> <!-- mesa-25.3.6 -->
 </manifest>
